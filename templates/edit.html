@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <audio style="float: right;" controls>
+        <source src="/static/audio/The_Unforgiven.mp3" type="audio/mpeg">
+        <source src="/static/audio/Mama_Said.mp3" type="audio/mpeg">
+        <source src="/static/audio/Nothing_Else_Matters.mp3" type="audio/mpeg">
+        Тег audio не поддерживается вашим браузером.
+        <a href="audio/music.mp3">Скачайте музыку</a>.
+    </audio>
+    <br>
+    <div>
+        <br>
+        <center><h1><font size="32" color="#FF0000">Metallica</font></h1></center>
+    </div>
+    <br>
+    <div>
+        <section class="menubar-group" style="float: left;margin-left: 5.91em;">
+            <button onclick="onStrike()">
+                <del>S</del>
+            </button>
+            <button onclick="onBold()"><b>B</b></button>
+            <button onclick="onItalic()"><i>I</i></button>
+        </section>
+
+        <button type="button" style="float: left;margin-left: 0.1em;" onclick="onCenter()">center</button>
+        <section class="menubar-group" style="float: left;margin-left: 0.1em;">
+            <button type="button" onclick="onHider3line()">h3</button>
+            <button type="button" onclick="onHider2line()">h2</button>
+            <button type="button" onclick="onHider1line()">h1</button>
+        </section>
+
+        <section class="menubar-group" style="float: left;margin-left: 15.2em;">
+            <button type="button" onclick="onPhoto()">фото</button>
+            <button type="button" onclick="onVideo()">видео</button>
+            <button type="button" onclick="onMusic()">музыка</button>
+        </section>
+    </div>
+    <form class="login_form" method="post">
+        <center><textarea id='a' cols="75" rows="15" name="about" autofocus></textarea></center>
+        <script>
+            const textarea = document.getElementById("a");
+
+            function onItalic() {
+              if (textarea.selectionStart == textarea.selectionEnd) {
+                return; // ничего не выделено
+              }
+              let selected = textarea.value.slice(textarea.selectionStart, textarea.selectionEnd);
+              textarea.setRangeText(`<i>${selected}<\i>`);
+            };
+            function onBold() {
+              if (textarea.selectionStart == textarea.selectionEnd) {
+                return; // ничего не выделено
+              }
+              let selected = textarea.value.slice(textarea.selectionStart, textarea.selectionEnd);
+              textarea.setRangeText(`<b>${selected}<\b>`);
+            };
+            function onStrike() {
+              if (textarea.selectionStart == textarea.selectionEnd) {
+                return; // ничего не выделено
+              }
+              let selected = textarea.value.slice(textarea.selectionStart, textarea.selectionEnd);
+              textarea.setRangeText(`<del>${selected}<\del>`);
+            };
+            function onCenter() {
+              if (textarea.selectionStart == textarea.selectionEnd) {
+                return; // ничего не выделено
+              }
+              let selected = textarea.value.slice(textarea.selectionStart, textarea.selectionEnd);
+              textarea.setRangeText(`<center>${selected}<\center>`);
+            };
+            function onHider1line() {
+              if (textarea.selectionStart == textarea.selectionEnd) {
+                return; // ничего не выделено
+              }
+              let selected = textarea.value.slice(textarea.selectionStart, textarea.selectionEnd);
+              textarea.setRangeText(`<h1>${selected}<\h1>`);
+            };
+            function onHider2line() {
+              if (textarea.selectionStart == textarea.selectionEnd) {
+                return; // ничего не выделено
+              }
+              let selected = textarea.value.slice(textarea.selectionStart, textarea.selectionEnd);
+              textarea.setRangeText(`<h2>${selected}<\h2>`);
+            };
+            function onHider3line() {
+              if (textarea.selectionStart == textarea.selectionEnd) {
+                return; // ничего не выделено
+              }
+              let selected = textarea.value.slice(textarea.selectionStart, textarea.selectionEnd);
+              textarea.setRangeText(`<h3>${selected}<\h3>`);
+            };
+            function onMusic() {
+              if (textarea.selectionStart == textarea.selectionEnd) {
+                return; // ничего не выделено
+              }
+              let selected = textarea.value.slice(textarea.selectionStart, textarea.selectionEnd);
+              textarea.setRangeText(`$$${selected}.mp3`);
+            };
+            function onPhoto() {
+              if (textarea.selectionStart == textarea.selectionEnd) {
+                return; // ничего не выделено
+              }
+              let selected = textarea.value.slice(textarea.selectionStart, textarea.selectionEnd);
+              textarea.setRangeText(`@@${selected}# cols=400 rows=400`);
+            };
+            function onVideo() {
+              if (textarea.selectionStart == textarea.selectionEnd) {
+                return; // ничего не выделено
+              }
+              let selected = textarea.value.slice(textarea.selectionStart, textarea.selectionEnd);
+              textarea.setRangeText(`##${selected}.mp4#cols=400 rows=400 poster={selected}.mp4`);
+            };
+
+            function onKeyboardShotcut(e) {
+              if (e.ctrlKey && e.key === "i") {
+                onItalic();
+              } else if (e.ctrlKey && e.key === "b") {
+                onBold();
+              } else if (e.ctrlKey && e.key === "s") {
+                onStrike();
+              } else if (e.ctrlKey && e.key === "l") {
+                onCenterline();
+              }
+            }
+            document.addEventListener("keyup", onKeyboardShotcut, false);
+        </script>
+
+        <!--            <button onclick='play()'>-->
+        <!--                <img src="static/img/next.png">-->
+        <!--            </button>-->
+
+        <div>
+            <button type="submit" name="">Отправить</button>
+        </div>
+    </form>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+{% endblock %}

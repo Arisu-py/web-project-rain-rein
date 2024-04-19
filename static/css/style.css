@@ -1,0 +1,30 @@
+p {
+color: white;
+font-size: 18px;
+}
+h2 {
+color:blue
+}
+textarea {
+ font-size: 24px;
+ background-color: black;
+ color: white;
+ resize : none;
+ position: absolute/fixed
+}
+button {
+ background-color: red;
+ color: white;
+ float: right;.
+ position: absolute/fixed.
+}
+body {
+    background-color: black;
+}
+.navbar {
+--bs-navbar-active-color: red;
+--bs-navbar-brand-color: red;
+--bs-navbar-brand-hover-color: #960019;
+--bs-navbar-hover-color: #960019;
+--bs-navbar-color: red;
+}

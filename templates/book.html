@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+<center><h1><font size="32" color="#FF0000">Metallica</font></h1></center>
+<p>hhh</p>
+<div>
+    <p>{% for i in text %}
+    <div>
+        {% if "$$" in i %}
+        <div>
+            <audio controls>
+                <source src="/static/audio/{{i[2:]}}" type="audio/mpeg">
+                Тег audio не поддерживается вашим браузером. <a href="audio/music.mp3">Скачайте музыку</a>.
+            </audio>
+        </div>
+        {% elif "@@" in i %}
+        <div>
+            <img src='/static/img/{{i[2:]}}'>
+        </div>
+        {% elif "##" in i %}
+        <div>
+            <video width="400" height="300" controls="controls" poster="static/img/Rain.png">
+                <source src="static/video/{{i[2:]}}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+                Тег video не поддерживается вашим браузером.
+                <a href="video/duel.mp4">Скачайте видео</a>.
+            </video>
+        </div>
+        {% elif "<i>" in i %}
+            <div>
+                <i>{{i}}</i>
+            </div>
+        {% elif "@@" in i %}
+            <div>
+                <img src='/static/img/{{i[2:]}}'>
+            </div>
+        {% elif "@@" in i %}
+            <div>
+                <img src='/static/img/{{i[2:]}}'>
+            </div>
+        {% elif "@@" in i %}
+            <div>
+                <img src='/static/img/{{i[2:]}}'>
+            </div>
+        {% elif "@@" in i %}
+            <div>
+                <img src='/static/img/{{i[2:]}}'>
+            </div>
+        {% elif "@@" in i %}
+            <div>
+                <img src='/static/img/{{i[2:]}}'>
+            </div>
+        {% else %}
+        <div><p>{{i}}</p></div>
+        {% endif %}
+    </div>
+    {% endfor %}
+    </p>
+</div>
+{% endblock %}
