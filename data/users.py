@@ -11,10 +11,10 @@ class User(SqlAlchemyBase, SerializerMixin):
 
     id = sqlalchemy.Column(sqlalchemy.Integer,
                            primary_key=True, autoincrement=True)
-    name = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    password = sqlalchemy.Column(sqlalchemy.String,
-                              index=True, unique=True, nullable=True)
-    fan = orm.relationship("Fan", back_populates='user')
+    name = sqlalchemy.Column(sqlalchemy.String, nullable=True, unique=True)
+    password = sqlalchemy.Column(sqlalchemy.String, index=True, nullable=True)
+
+    news = orm.relationship("Fan", back_populates='user')
 
     def __repr__(self):
         return f"<{self.__class__.__name__}> {self.id} {self.name} ({self.email})"
