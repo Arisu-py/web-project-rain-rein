@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import request, render_template
+from flask import request, render_template, redirect
 from flask import url_for
 
 app = Flask(__name__)
@@ -25,14 +25,21 @@ def edit():
             e.write(s)
         print(d)
 
-        return "Форма отправлена"
+        return redirect("/home")
 
 
 @app.route('/book')
-
-
 def book():
     return render_template("book.html", text=d)
+
+
+@app.route('/home')
+def home():
+    return render_template("home.html")
+
+@app.route('/enter')
+def enter():
+    return render_template("enter.html")
 
 
 if __name__ == '__main__':
