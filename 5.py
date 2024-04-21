@@ -15,6 +15,8 @@ def edit():
         return render_template("edit.html", title="title")
     elif request.method == 'POST':
         s = request.form['about']
+        s = s.replace("<", "(")
+        s = s.replace(">", ")")
         for i in s:
             d.append(i)
         d = "".join(d)

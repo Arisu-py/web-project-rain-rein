@@ -3,9 +3,9 @@
 {% block content %}
 <div>
     <audio style="float: right;" controls>
+        <source src="/static/audio/Nothing_Else_Matters.mp3" type="audio/mpeg">
         <source src="/static/audio/The_Unforgiven.mp3" type="audio/mpeg">
         <source src="/static/audio/Mama_Said.mp3" type="audio/mpeg">
-        <source src="/static/audio/Nothing_Else_Matters.mp3" type="audio/mpeg">
         Тег audio не поддерживается вашим браузером.
         <a href="audio/music.mp3">Скачайте музыку</a>.
     </audio>
@@ -25,6 +25,7 @@
         </section>
 
         <button type="button" style="float: left;margin-left: 0.1em;" onclick="onCenter()">center</button>
+        <button type="button" style="float: left;margin-left: 0.1em;" onclick="onRight()">right</button>
         <section class="menubar-group" style="float: left;margin-left: 0.1em;">
             <button type="button" onclick="onHider3line()">h3</button>
             <button type="button" onclick="onHider2line()">h2</button>
@@ -47,49 +48,56 @@
                 return; // ничего не выделено
               }
               let selected = textarea.value.slice(textarea.selectionStart, textarea.selectionEnd);
-              textarea.setRangeText(`<i>${selected}<\i>`);
+              textarea.setRangeText(`<%i>${selected}<*i>`);
             };
             function onBold() {
               if (textarea.selectionStart == textarea.selectionEnd) {
                 return; // ничего не выделено
               }
               let selected = textarea.value.slice(textarea.selectionStart, textarea.selectionEnd);
-              textarea.setRangeText(`<b>${selected}<\b>`);
+              textarea.setRangeText(`<%b>${selected}<*b>`);
             };
             function onStrike() {
               if (textarea.selectionStart == textarea.selectionEnd) {
                 return; // ничего не выделено
               }
               let selected = textarea.value.slice(textarea.selectionStart, textarea.selectionEnd);
-              textarea.setRangeText(`<del>${selected}<\del>`);
+              textarea.setRangeText(`<%s>${selected}<*s>`);
             };
             function onCenter() {
               if (textarea.selectionStart == textarea.selectionEnd) {
                 return; // ничего не выделено
               }
               let selected = textarea.value.slice(textarea.selectionStart, textarea.selectionEnd);
-              textarea.setRangeText(`<center>${selected}<\center>`);
+              textarea.setRangeText(`<%center>${selected}<*center>`);
+            };
+            function onRight() {
+              if (textarea.selectionStart == textarea.selectionEnd) {
+                return; // ничего не выделено
+              }
+              let selected = textarea.value.slice(textarea.selectionStart, textarea.selectionEnd);
+              textarea.setRangeText(`<%right>${selected}<*right>`);
             };
             function onHider1line() {
               if (textarea.selectionStart == textarea.selectionEnd) {
                 return; // ничего не выделено
               }
               let selected = textarea.value.slice(textarea.selectionStart, textarea.selectionEnd);
-              textarea.setRangeText(`<h1>${selected}<\h1>`);
+              textarea.setRangeText(`<%h1>${selected}<*h1>`);
             };
             function onHider2line() {
               if (textarea.selectionStart == textarea.selectionEnd) {
                 return; // ничего не выделено
               }
               let selected = textarea.value.slice(textarea.selectionStart, textarea.selectionEnd);
-              textarea.setRangeText(`<h2>${selected}<\h2>`);
+              textarea.setRangeText(`<%h2>${selected}<*h2>`);
             };
             function onHider3line() {
               if (textarea.selectionStart == textarea.selectionEnd) {
                 return; // ничего не выделено
               }
               let selected = textarea.value.slice(textarea.selectionStart, textarea.selectionEnd);
-              textarea.setRangeText(`<h3>${selected}<\h3>`);
+              textarea.setRangeText(`<%h3>${selected}<*h3>`);
             };
             function onMusic() {
               if (textarea.selectionStart == textarea.selectionEnd) {
@@ -103,14 +111,14 @@
                 return; // ничего не выделено
               }
               let selected = textarea.value.slice(textarea.selectionStart, textarea.selectionEnd);
-              textarea.setRangeText(`@@${selected}# cols=400 rows=400`);
+              textarea.setRangeText(`@@${selected}# cols=400_rows=400`);
             };
             function onVideo() {
               if (textarea.selectionStart == textarea.selectionEnd) {
                 return; // ничего не выделено
               }
               let selected = textarea.value.slice(textarea.selectionStart, textarea.selectionEnd);
-              textarea.setRangeText(`##${selected}.mp4#cols=400 rows=400 poster={selected}.mp4`);
+              textarea.setRangeText(`##${selected}.mp4# cols=400_rows=400 poster=video/.mp4`);
             };
 
             function onKeyboardShotcut(e) {

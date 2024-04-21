@@ -2,8 +2,14 @@ p {
 color: white;
 font-size: 18px;
 }
+h1 {
+color:white
+}
 h2 {
-color:blue
+color:white
+}
+h3 {
+color:white
 }
 textarea {
  font-size: 24px;

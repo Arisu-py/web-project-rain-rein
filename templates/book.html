@@ -4,56 +4,256 @@
 <center><h1><font size="32" color="#FF0000">Metallica</font></h1></center>
 <p>hhh</p>
 <div>
-    <p>{% for i in text %}
+    <p>{% for part in text %}
     <div>
-        {% if "$$" in i %}
+        {% if "$$" in part %}
         <div>
             <audio controls>
-                <source src="/static/audio/{{i[2:]}}" type="audio/mpeg">
+                <source src="/static/audio/{{part[2:]}}" type="audio/mpeg">
                 Тег audio не поддерживается вашим браузером. <a href="audio/music.mp3">Скачайте музыку</a>.
             </audio>
         </div>
-        {% elif "@@" in i %}
+        {% elif "@@" in part %}
         <div>
-            <img src='/static/img/{{i[2:]}}'>
+            <img width="{{part[part.index('=') + 1:part.index('_')]}}"
+                 height="{{part[part.index('_') + 6:part.rfind(' ')]}}" src='/static/img/{{part[2:]}}'>
         </div>
-        {% elif "##" in i %}
+        {% elif "##" in part %}
         <div>
-            <video width="400" height="300" controls="controls" poster="static/img/Rain.png">
-                <source src="static/video/{{i[2:]}}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+            <video width="{{part[part.index('=') + 1:part.index('_')]}}"
+                   height="{{part[part.index('_') + 6:part.rfind(' ')]}}"
+                   controls="controls" poster="{{part[part.rfind('=') + 1:]}}">
+                <source src="static/video/{{part[2:part.index('=') - 6]}}"
+                        type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
                 Тег video не поддерживается вашим браузером.
-                <a href="video/duel.mp4">Скачайте видео</a>.
+                <a href="video/{{part[2:part.index('=') - 6]}}">Скачайте видео</a>.
             </video>
         </div>
-        {% elif "<i>" in i %}
-            <div>
-                <i>{{i}}</i>
-            </div>
-        {% elif "@@" in i %}
-            <div>
-                <img src='/static/img/{{i[2:]}}'>
-            </div>
-        {% elif "@@" in i %}
-            <div>
-                <img src='/static/img/{{i[2:]}}'>
-            </div>
-        {% elif "@@" in i %}
-            <div>
-                <img src='/static/img/{{i[2:]}}'>
-            </div>
-        {% elif "@@" in i %}
-            <div>
-                <img src='/static/img/{{i[2:]}}'>
-            </div>
-        {% elif "@@" in i %}
-            <div>
-                <img src='/static/img/{{i[2:]}}'>
-            </div>
+        {% elif "(%i)" in part and "(%b)" in part and part.index("i") < part.index("b") %}
+        <div>
+            <p>{{part[:part.index("(")]}}<i>{{part[part.index("%") + 3:part.rfind("%") - 1]}}<b>{{part[part.rfind("%")
+                + 3:part.index("*") - 1]}}</b>{{part[part.index("*") + 3:part.rfind("*")
+                - 1:]}}</i>{{part[part.rfind("*")
+                + 3:]}}</p>
+        </div>
+        {% elif "(%i)" in part and "(%b)" in part and part.index("i") > part.index("b") %}
+        <div>
+            <p>{{part[:part.index("(")]}}<b>{{part[part.index("%") + 3:part.rfind("%") - 1]}}<i>{{part[part.rfind("%")
+                + 3:part.index("*") - 1]}}</i>{{part[part.index("*") + 3:part.rfind("*")
+                - 1:]}}</b>{{part[part.rfind("*")
+                + 3:]}}</p>
+        </div>
+        {% elif "(%h1)" in part and "(%right)" in part and part.index("h") < part.index("r") %}
+        <br>
+        <div>
+            <br>
+            <p style="float: right;position: absolute/fixed;">
+                {{part[:part.index("(")]}}
+            <h1>{{part[part.index("%") + 4:part.rfind("%") - 1]}}
+                <center style="float: right;position: absolute/fixed;">{{part[part.rfind("%")
+                    + 7:part.index("*") - 1]}}
+                </center>
+                {{part[part.index("*") + 7:part.rfind("*")
+                - 1:]}}
+            </h1>
+            {{part[part.rfind("*")
+            + 4:]}}</p>
+        </div>
+        {% elif "(%h2)" in part and "(%right)" in part and part.index("h") < part.index("r") %}
+        <br>
+        <div>
+            <br>
+            <p style="float: right;position: absolute/fixed;">
+                {{part[:part.index("(")]}}
+            <h2>{{part[part.index("%") + 4:part.rfind("%") - 1]}}
+                <center style="float: right;position: absolute/fixed;">{{part[part.rfind("%")
+                    + 7:part.index("*") - 1]}}
+                </center>
+                {{part[part.index("*") + 7:part.rfind("*")
+                - 1:]}}
+            </h2>
+            {{part[part.rfind("*")
+            + 4:]}}</p>
+        </div>
+        {% elif "(%h3)" in part and "(%right)" in part and part.index("h") < part.index("r") %}
+        <br>
+        <div>
+            <br>
+            <p style="float: right;position: absolute/fixed;">
+                {{part[:part.index("(")]}}
+            <h3>{{part[part.index("%") + 4:part.rfind("%") - 1]}}
+                <center style="float: right;position: absolute/fixed;">{{part[part.rfind("%")
+                    + 7:part.index("*") - 1]}}
+                </center>
+                {{part[part.index("*") + 7:part.rfind("*")
+                - 1:]}}
+            </h3>
+            {{part[part.rfind("*")
+            + 4:]}}</p>
+        </div>
+        {% elif "(%h1)" in part and "(%right)" in part and part.index("h") > part.index("r") %}
+        <br>
+        <div>
+            <br>
+            <p>{{part[:part.index("(")]}}
+            <h1 style="float: right;position: absolute/fixed;">{{part[part.index("%") + 7:part.rfind("%") - 1]}}
+                <center style="float: right;position: absolute/fixed;">{{part[part.rfind("%")
+                    + 4:part.index("*") - 1]}}
+                </center>
+                {{part[part.index("*") + 4:part.rfind("*")
+                - 1:]}}
+            </h1>
+            {{part[part.rfind("*")
+            + 7:]}}</p>
+        </div>
+        {% elif "(%h2)" in part and "(%right)" in part and part.index("h") > part.index("r") %}
+        <br>
+        <div>
+            <br>
+            <p>{{part[:part.index("(")]}}
+            <h2 style="float: right;position: absolute/fixed;">{{part[part.index("%") + 7:part.rfind("%") - 1]}}
+                <center style="float: right;position: absolute/fixed;">{{part[part.rfind("%")
+                    + 4:part.index("*") - 1]}}
+                </center>
+                {{part[part.index("*") + 4:part.rfind("*")
+                - 1:]}}
+            </h2>
+            {{part[part.rfind("*")
+            + 7:]}}</p>
+        </div>
+        {% elif "(%h3)" in part and "(%right)" in part and part.index("h") > part.index("r") %}
+        <br>
+        <div>
+            <br>
+            <p>{{part[:part.index("(")]}}
+            <h3 style="float: right;position: absolute/fixed;">{{part[part.index("%") + 7:part.rfind("%") - 1]}}
+                <center style="float: right;position: absolute/fixed;">{{part[part.rfind("%")
+                    + 4:part.index("*") - 1]}}
+                </center>
+                {{part[part.index("*") + 4:part.rfind("*")
+                - 1:]}}
+            </h3>
+            {{part[part.rfind("*")
+            + 7:]}}</p>
+        </div>
+        {% elif "(%i)" in part and "(%right)" in part and part.index("i") < part.index("r") %}
+        <div>
+            <br>
+            <p style="color:white; float: right;position: absolute/fixed;">
+                {{part[:part.index("(")]}}
+                <i style="color:white;">{{part[part.index("%") + 3:part.rfind("%") - 1]}}
+                    <center style="float: right;position: absolute/fixed;">{{part[part.rfind("%")
+                        + 7:part.index("*") - 1]}}
+                    </center>
+                    {{part[part.index("*") + 7:part.rfind("*")
+                    - 1:]}}
+                </i>
+                {{part[part.rfind("*")
+                + 3:]}}
+            </p>
+        </div>
+        {% elif "(%b)" in part and "(%right)" in part and part.index("b") < part.index("r") %}
+        <div>
+            <br>
+            <p style="color:white; float: right;position: absolute/fixed;">
+                {{part[:part.index("(")]}}
+                <b>{{part[part.index("%") + 3:part.rfind("%") - 1]}}
+                    <center style="float: right;position: absolute/fixed;">{{part[part.rfind("%")
+                        + 7:part.index("*") - 1]}}
+                    </center>
+                    {{part[part.index("*") + 7:part.rfind("*")
+                    - 1:]}}
+                </b>
+                {{part[part.rfind("*")
+                + 3:]}}
+            </p>
+        </div>
+        {% elif "(%i)" in part and "(%right)" in part and part.index("i") > part.index("r") %}
+        <div>
+            <br>
+            <p style="color:white;">{{part[:part.index("(")]}}
+                <i style="color:white;float: right;position: absolute/fixed;">{{part[part.index("%") + 7:part.rfind("%")
+                    - 1]}}
+                    <center style="float: right;position: absolute/fixed;">{{part[part.rfind("%")
+                        + 3:part.index("*") - 1]}}
+                    </center>
+                    {{part[part.index("*") + 3:part.rfind("*")
+                    - 1:]}}
+                </i>
+                {{part[part.rfind("*")
+                + 7:]}}
+            </p>
+        </div>
+        {% elif "(%b)" in part and "(%right)" in part and part.index("b") > part.index("r") %}
+        <div>
+            <br>
+            <p>{{part[:part.index("(")]}}
+                <b style="color:white; float: right;position: absolute/fixed;">{{part[part.index("%") +
+                    7:part.rfind("%") - 1]}}
+                    <center style="float: right;position: absolute/fixed;">{{part[part.rfind("%")
+                        + 3:part.index("*") - 1]}}
+                    </center>
+                    {{part[part.index("*") + 3:part.rfind("*")
+                    - 1:]}}
+                </b>
+                {{part[part.rfind("*")
+                + 7:]}}
+            </p>
+        </div>
+        {% elif "(%i)" in part %}
+        <div>
+            <p>{{part[:part.index("(")]}}<i>{{part[part.index("(") + 4:part.index("*") - 1]}}</i>{{part[part.index("*")
+                + 3:]}}</p>
+        </div>
+        {% elif "(%b)" in part %}
+        <div>
+            <p>{{part[:part.index("(")]}}<b>{{part[part.index("(") + 4:part.index("*") - 1]}}</b>{{part[part.index("*")
+                + 3:]}}</p>
+        </div>
+        {% elif "(%s)" in part %}
+        <div>
+            <p>{{part[:part.index("(")]}}<s>{{part[part.index("(") +
+                4:part.index("*") - 1]}}</s>{{part[part.index("*")
+                + 3:]}}</p>
+        </div>
+        {% elif "(%h1)" in part %}
+        <div>
+            <p>{{part[:part.index("(")]}}
+            <h1>{{part[part.index("(") + 5:part.index("*") - 1]}}</h1>{{part[part.index("*")
+            + 4:]}}</p>
+        </div>
+        {% elif "(%h2)" in part %}
+        <div>
+            <p>{{part[:part.index("(")]}}
+            <h2>{{part[part.index("(") + 5:part.index("*") - 1]}}</h2>{{part[part.index("*")
+            + 4:]}}</p>
+        </div>
+        {% elif "(%h3)" in part %}
+        <div>
+            <p>{{part[:part.index("(")]}}
+            <h3>{{part[part.index("(") + 5:part.index("*") - 1]}}</h3>{{part[part.index("*")
+            + 4:]}}</p>
+        </div>
+        {% elif "(%center)" in part %}
+        <br>
+        <div>
+            <p>{{part[:part.index("(")]}}
+            <center style="color: white;">{{part[part.index("(") + 9:part.rfind("*") - 1]}}</center>
+            {{part[part.rfind("*")
+            + 8:]}}</p>
+        </div>
+        {% elif "(%right)" in part %}
+        <br>
+        <div>
+            <br>
+            <center style="color: white; float: right;position: absolute/fixed;">{{part[part.index("(") +
+                8:part.index("*") - 1]}}
+            </center>
+        </div>
         {% else %}
-        <div><p>{{i}}</p></div>
+        <div><p>{{part}}</p></div>
         {% endif %}
+        {% endfor %}
     </div>
-    {% endfor %}
-    </p>
 </div>
 {% endblock %}
