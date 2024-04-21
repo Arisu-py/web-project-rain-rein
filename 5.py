@@ -1,10 +1,12 @@
 from flask import Flask
-from flask import request, render_template, redirect
+from flask import request, render_template, redirect, session
 from flask import url_for
+from data import db_session, fan_api
 
 app = Flask(__name__)
 s = ''
 d = []
+DB_NAME = 'rain'
 
 
 @app.route('/edit', methods=['POST', 'GET'])
@@ -37,10 +39,18 @@ def book():
 def home():
     return render_template("home.html")
 
+
 @app.route('/enter')
 def enter():
     return render_template("enter.html")
 
 
-if __name__ == '__main__':
+def main():
+    db_session.global_init(f"db/{DB_NAME}.db")
+    #fill_users(DB_NAME)
+    app.register_blueprint(fan_api.blueprint)
     app.run(port=8080, host='127.0.0.1')
+
+
+if __name__ == '__main__':
+    main()
